@@ -46,7 +46,7 @@ const FormikLoginForm = withFormik({
       .required("Password is required")
   }),
 
-  handleSubmit({ resetForm, setErrors, setSubmitting, values }) {
+  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
     if (values.email === "alreadytakenn@tbd.dev") {
       setErrors({ email: "That email is already taken" });
     } else {
