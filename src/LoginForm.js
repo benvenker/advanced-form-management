@@ -17,7 +17,8 @@ const LoginForm = ({ values, errors, touched }) => {
           <Field placeholder="password" type="password" name="password" />
         </div>
         <div>
-          <Field as="select" name="role">
+          <Field as="select" name="role" placeholder="Choose Role">
+            <option value="engineer">Choose Role</option>
             <option value="engineer">Engineer</option>
             <option value="manager">Manaager</option>
             <option value="operations">Operations</option>
@@ -26,8 +27,7 @@ const LoginForm = ({ values, errors, touched }) => {
         </div>
         <div>
           <label>
-            <Field type="checkbox" name="tos" checked={values.tos} />
-            Accept ToS
+            <Field type="checkbox" name="tos" checked={values.tos} /> Accept ToS
           </label>
           <div>
             <button>Submit!</button>

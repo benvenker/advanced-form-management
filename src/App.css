@@ -1,3 +1,61 @@
 .App {
   /* text-align: center; */
+  padding: 20px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+input[type="checkbox"] {
+  margin: 20px 0;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(17, 45, 136);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+select {
+  display: block;
+  padding: 10px 70px 10px 13px !important;
+  max-width: 100%;
+  height: auto !important;
+  border: 1px solid #e3e3e3;
+  border-radius: 3px;
+  background: url("https://i.ibb.co/b7xjLrB/selectbox-arrow.png") right center
+    no-repeat;
+  background-color: #fff;
+  color: #444444;
+  font-size: 12px;
+  line-height: 16px !important;
+  appearance: none;
+  /* this is must */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select option {
+  padding: 0 4px;
+}
+
+p {
+  /* background-color: pink;
+  border: 1px solid rgb(134, 39, 39); */
+  color: rgb(134, 39, 39);
+  padding: 15px;
+  width: 50%;
 }
