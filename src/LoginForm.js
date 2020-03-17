@@ -17,6 +17,14 @@ const LoginForm = ({ values, errors, touched }) => {
           <Field placeholder="password" type="password" name="password" />
         </div>
         <div>
+          <Field as="select" name="role">
+            <option value="engineer">Engineer</option>
+            <option value="manager">Manaager</option>
+            <option value="operations">Operations</option>
+            <option value="executtive">Executive</option>
+          </Field>
+        </div>
+        <div>
           <label>
             <Field type="checkbox" name="tos" checked={values.tos} />
             Accept ToS
@@ -29,7 +37,9 @@ const LoginForm = ({ values, errors, touched }) => {
       <h3>Users</h3>
       <ul>
         {values.users.map(user => (
-          <li>{user.email}</li>
+          <li>
+            {user.email} test {user.password} {user.role}
+          </li>
         ))}
       </ul>
     </div>
@@ -37,10 +47,11 @@ const LoginForm = ({ values, errors, touched }) => {
 };
 
 const FormikLoginForm = withFormik({
-  mapPropsToValues({ email, password, tos }) {
+  mapPropsToValues({ email, password, tos, role }) {
     return {
       email: email || "",
       password: password || "",
+      role: role || "",
       tos: tos || false,
       users: []
     };
