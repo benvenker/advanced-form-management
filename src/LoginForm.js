@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 
 const LoginForm = ({ values, errors, touched }) => {
+  console.log("values, ", values);
+  const [users, setUsers] = useState([]);
+
   return (
     <div className="login-form">
       <Form>
@@ -23,6 +26,12 @@ const LoginForm = ({ values, errors, touched }) => {
           </div>
         </div>
       </Form>
+      <h3>Users</h3>
+      <ul>
+        {values.users.map(user => (
+          <li>{user.email}</li>
+        ))}
+      </ul>
     </div>
   );
 };
@@ -32,7 +41,8 @@ const FormikLoginForm = withFormik({
     return {
       email: email || "",
       password: password || "",
-      tos: tos || false
+      tos: tos || false,
+      users: []
     };
   },
 
@@ -52,7 +62,15 @@ const FormikLoginForm = withFormik({
     } else {
       axios
         .post("https://reqres.in/api/users", values)
-        .then(res => console.log(res.data));
+        .then(res => {
+          values.users.push(res.data);
+          resetForm();
+          setSubmitting(false);
+        })
+        .catch(err => {
+          console.log(err);
+          setSubmitting(false);
+        });
     }
   }
 })(LoginForm);
