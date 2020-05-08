@@ -18,11 +18,11 @@ const LoginForm = ({ values, errors, touched }) => {
         </div>
         <div>
           <Field as="select" name="role" placeholder="Choose Role">
-            <option value="engineer">Choose Role</option>
+            <option value="">Choose Role</option>
             <option value="engineer">Engineer</option>
             <option value="manager">Manaager</option>
             <option value="operations">Operations</option>
-            <option value="executtive">Executive</option>
+            <option value="executive">Executive</option>
           </Field>
         </div>
         <div>
