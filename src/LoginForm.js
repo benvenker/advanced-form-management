@@ -12,7 +12,7 @@ const LoginForm = ({ values, errors, touched }) => {
       <Form>
         <div>
           {touched.email && errors.email && <p>{errors.email}</p>}
-          <Field placeholder="Username" type="text" name="email" />
+          <Field placeholder="Email address" type="text" name="email" />
           {touched.password && errors.password && <p>{errors.password}</p>}
           <Field placeholder="password" type="password" name="password" />
         </div>
@@ -36,7 +36,7 @@ const LoginForm = ({ values, errors, touched }) => {
       </Form>
       <h3>Users</h3>
       <ul>
-        {values.users.map(user => (
+        {values.users.map((user) => (
           <li>
             {user.email} test {user.password} {user.role}
           </li>
@@ -53,18 +53,16 @@ const FormikLoginForm = withFormik({
       password: password || "",
       role: role || "",
       tos: tos || false,
-      users: []
+      users: [],
     };
   },
 
   /// Validaion Schema
   validationSchema: Yup.object().shape({
-    email: Yup.string()
-      .email("Email not valid")
-      .required("Email is required"),
+    email: Yup.string().email("Email not valid").required("Email is required"),
     password: Yup.string()
       .min(6, "Password must be 6 characters or longer")
-      .required("Password is required")
+      .required("Password is required"),
   }),
 
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
@@ -73,17 +71,17 @@ const FormikLoginForm = withFormik({
     } else {
       axios
         .post("https://reqres.in/api/users", values)
-        .then(res => {
+        .then((res) => {
           values.users.push(res.data);
           resetForm();
           setSubmitting(false);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
           setSubmitting(false);
         });
     }
-  }
+  },
 })(LoginForm);
 
 export default FormikLoginForm;
