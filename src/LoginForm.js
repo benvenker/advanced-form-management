@@ -8,41 +8,57 @@ const LoginForm = ({ values, errors, touched }) => {
   const [users, setUsers] = useState([]);
 
   return (
-    <div className="login-form">
-      <Form>
-        <div>
-          {touched.email && errors.email && <p>{errors.email}</p>}
-          <Field placeholder="Email address" type="text" name="email" />
-          {touched.password && errors.password && <p>{errors.password}</p>}
-          <Field placeholder="password" type="password" name="password" />
+    <>
+      <div className="login-form">
+        <div className="form-container">
+          <h1 className="form-title">User Onboarding</h1>
+          <h3 className="form-message">
+            Enter your information to get started
+          </h3>
+          <Form>
+            <div>
+              {touched.email && errors.email && <p>{errors.email}</p>}
+              <div className="input-container">
+                <Field placeholder="Email address" type="text" name="email" />
+              </div>
+              {touched.password && errors.password && <p>{errors.password}</p>}
+              <div className="input-container">
+                <Field placeholder="password" type="password" name="password" />
+              </div>
+            </div>
+            <div>
+              <Field as="select" name="role" placeholder="Choose Role">
+                <option value="">Choose Role</option>
+                <option value="engineer">Engineer</option>
+                <option value="manager">Manaager</option>
+                <option value="operations">Operations</option>
+                <option value="executive">Executive</option>
+              </Field>
+            </div>
+            <div>
+              <label>
+                <Field type="checkbox" name="tos" checked={values.tos} /> Accept
+                ToS
+              </label>
+              <div>
+                <button>SUBMIT</button>
+              </div>
+            </div>
+          </Form>
         </div>
-        <div>
-          <Field as="select" name="role" placeholder="Choose Role">
-            <option value="">Choose Role</option>
-            <option value="engineer">Engineer</option>
-            <option value="manager">Manaager</option>
-            <option value="operations">Operations</option>
-            <option value="executive">Executive</option>
-          </Field>
-        </div>
-        <div>
-          <label>
-            <Field type="checkbox" name="tos" checked={values.tos} /> Accept ToS
-          </label>
-          <div>
-            <button>Submit!</button>
-          </div>
-        </div>
-      </Form>
-      <h3>Users</h3>
-      <ul>
-        {values.users.map((user) => (
-          <li>
-            {user.email} test {user.password} {user.role}
-          </li>
-        ))}
-      </ul>
-    </div>
+      </div>
+      <div className="users-list-container">
+        <h3 className="users-list-title">Users</h3>
+        <ul className="users-list">
+          {values.users.map((user) => (
+            <li className="users-list-item">
+              <span className="user-email">{user.email}</span>{" "}
+              <span className="user-role">{user.role}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 };
 
